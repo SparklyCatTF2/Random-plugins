@@ -50,17 +50,17 @@ public Action Namecall(int client, int args)
 				if(args == 2)
 				{
 					Call_StartFunction(plugin, plfunc);
-					any retval;
+					int retval;
 					Call_Finish(retval);
 					
 					delete array;
-					PrintToChat(client, "__namecall() finished, return value: %s", retval);
+					PrintToChat(client, "__namecall() finished, return value: %i", retval);
 					return Plugin_Handled;
 				}
 				else // Welp, this one is harder than without any values
 				{
 					Call_StartFunction(plugin, plfunc);
-					any retval;
+					int retval;
 					for(int count = 2; count < args; ++count)
 					{
 						// Aaaand now we use arg[48] for the value, how great
@@ -69,9 +69,9 @@ public Action Namecall(int client, int args)
 						AddValueToFunction(arg, plfunc);
 					}
 					Call_Finish(retval); // For some reason it doesn't want to show anything as the return value
-					
+								// Nevermind, it does return something, you just have to use an int or float
 					delete array;
-					PrintToChat(client, "__namecall() finished successfully, return value: %s", retval);
+					PrintToChat(client, "__namecall() finished successfully, return value: %i", retval);
 					return Plugin_Handled;
 				}
 			}
